@@ -60,6 +60,7 @@ namespace DIP.Algorithms
                 for (int x = 0; x < image.Width; x++)
                 {
                     imageMat[x, y] = image.GetPixelGray(x, y);
+                    if (imageMat[x, y] <= 0.00000001) imageMat[x, y] = 0.01;
                 }
             }
         }
