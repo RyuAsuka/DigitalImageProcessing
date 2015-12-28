@@ -1,12 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Drawing;
 
 namespace DIP.Algorithms
 {
+    /// <summary>
+    /// 彩色图像处理
+    /// </summary>
     public class ColorfulImageProcessor
     {
         Bitmap origin;
@@ -16,6 +15,10 @@ namespace DIP.Algorithms
         HSI[,] hsiTable;
         Color[,] rgbTable;
 
+        /// <summary>
+        /// 构造函数，从输入图像生成RGB矩阵和HSI矩阵
+        /// </summary>
+        /// <param name="input">输入图像</param>
         public ColorfulImageProcessor(Bitmap input)
         {
             origin = input;
@@ -27,6 +30,9 @@ namespace DIP.Algorithms
             GetRGBTable();
         }
 
+        /// <summary>
+        /// 生成RGB矩阵
+        /// </summary>
         private void GetRGBTable()
         {
             for (int y = 0; y < height; y++)
@@ -38,12 +44,18 @@ namespace DIP.Algorithms
             }
         }
 
+        /// <summary>
+        /// 获取或设置图像
+        /// </summary>
         public Bitmap Image
         {
             get { return after; }
             set { after = value; }
         }
 
+        /// <summary>
+        /// RGB矩阵转HSI矩阵
+        /// </summary>
         public void RGBToHSI()
         {
             for (int y = 0; y < height; y++)
@@ -70,6 +82,9 @@ namespace DIP.Algorithms
             }
         }
 
+        /// <summary>
+        /// HSI矩阵转RGB矩阵
+        /// </summary>
         public void HSIToRGB()
         {
             int R = 0, G = 0, B = 0;
@@ -110,6 +125,9 @@ namespace DIP.Algorithms
             }
         }
 
+        /// <summary>
+        /// 提取红色
+        /// </summary>
         public void GetRed()
         {
             for (int y = 0; y < height; y++)
@@ -126,6 +144,11 @@ namespace DIP.Algorithms
             }
         }
 
+        /// <summary>
+        /// 从RGB值获得色盘角度
+        /// </summary>
+        /// <param name="c">颜色c</param>
+        /// <returns>色盘角度值</returns>
         private double GetTheta(Color c)
         {
             double r = (double)c.R;
@@ -136,6 +159,13 @@ namespace DIP.Algorithms
             return RadiasToDegree(theta);
         }
 
+        /// <summary>
+        /// 求RGB三个值的最小值
+        /// </summary>
+        /// <param name="R">红色</param>
+        /// <param name="G">绿色</param>
+        /// <param name="B">蓝色</param>
+        /// <returns></returns>
         private int Min(int R, int G, int B)
         {
             if (R < G && R < B) return R;
@@ -144,11 +174,21 @@ namespace DIP.Algorithms
             else return B;
         }
 
+        /// <summary>
+        /// 角度转弧度
+        /// </summary>
+        /// <param name="angle">角度</param>
+        /// <returns>对应的弧度值</returns>
         private double DegreeToRadias(double angle)
         {
             return angle * Math.PI / 180.0F;
         }
 
+        /// <summary>
+        /// 弧度转角度
+        /// </summary>
+        /// <param name="rad">弧度值</param>
+        /// <returns>对应的角度值</returns>
         private double RadiasToDegree(double rad)
         {
             return rad / Math.PI * 180.0F;
