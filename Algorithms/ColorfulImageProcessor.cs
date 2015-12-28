@@ -117,7 +117,7 @@ namespace DIP.Algorithms
                 for (int x = 0; x < width; x++)
                 {
                     int h = hsiTable[x, y].H;
-                    if (h >= 60 && h <= 300)
+                    if (h >= 20 && h <= 340)
                     {
                         hsiTable[x, y].S = 0;
                         hsiTable[x, y].I = 0;
