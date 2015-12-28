@@ -5,6 +5,9 @@ using System.Drawing;
 
 namespace DIP.Algorithms
 {
+    /// <summary>
+    /// 图像增强
+    /// </summary>
     public class Enhancement
     {
         Bitmap image;
